@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora IP - Fórmula de Conversión para Precios</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="text-center">
+        <img src="https://www.carnavaldesanmiguel.net/wp-content/uploads/2017/11/integracionpublicitaria.png" alt="Logo" class="img-fluid" style="max-width: 200px;">
+        <h2>Calculadora IP</h2>
+    </div>
+
+    <form id="miCalculadora" class="mt-4">
+        <div class="form-group">
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" class="form-control" id="cantidad" placeholder="Cantidad">
+        </div>
+        
+        <div class="form-group">
+            <label for="material">Selecciona El Material:</label>
+            <select id="material" class="form-control" aria-label="Default select example">
+                <option selected disabled>Selecciona El Material</option>
+                <option value="1">Vinil</option>
+                <option value="2">Lona</option>
+                <option value="3">Vinil Transparente</option>
+                <option value="4">Vinilo Mate</option>
+                <option value="5">Microperforado</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="ancho">Ancho:</label>
+            <input type="number" class="form-control" id="ancho" placeholder="Ancho">
+        </div>
+
+        <div class="form-group">
+            <label for="alto">Alto:</label>
+            <input type="number" class="form-control" id="alto" placeholder="Alto">
+        </div>
+
+        <div class="form-group">
+            <label for="precioInicial">Precio Inicial:</label>
+            <input type="number" class="form-control" id="precioInicial" placeholder="Precio Inicial">
+        </div>
+
+        <div class="form-group">
+            <label for="desperdicio">Desperdicio:</label>
+            <input type="number" class="form-control" id="desperdicio" placeholder="Desperdicio">
+        </div>
+
+        <div class="form-group">
+            <label for="anchoMP">Ancho MP:</label>
+            <input type="number" class="form-control" id="anchoMP" placeholder="Ancho MP">
+        </div>
+
+        <div class="form-group">
+            <label for="altoMP">Alto MP:</label>
+            <input type="number" class="form-control" id="altoMP" placeholder="Alto MP">
+        </div>
+
+        <button type="button" class="btn btn-primary btn-block" onclick="calcular()">Calcular Precio</button>
+        <button type="button" class="btn btn-secondary btn-block" onclick="limpiar()">Limpiar Campos</button>
+
+        <hr>
+
+        <div class="form-group">
+            <label for="impresionTotal">Impresión total: $</label>
+            <input disabled type="text" class="form-control" id="impresionTotal">
+        </div>
+
+        <div class="form-group">
+            <label for="desperdicioTotal">Desperdicio total: $</label>
+            <input disabled type="text" class="form-control" id="desperdicioTotal">
+        </div>
+
+        <div class="form-group">
+            <label for="precioTotal">Precio total: $</label>
+            <input disabled type="text" class="form-control" id="precioTotal">
+        </div>
+    </form>
+</div>
+
+<script>
+    function calcular() {
+        const cantidad = Number(document.getElementById('cantidad').value);
+        const ancho = Number(document.getElementById('ancho').value);
+        const alto = Number(document.getElementById('alto').value);
+        const precioInicial = Number(document.getElementById('precioInicial').value);
+        const desperdicio = Number(document.getElementById('desperdicio').value);
+        const anchoMP = Number(document.getElementById('anchoMP').value);
+        const altoMP = Number(document.getElementById('altoMP').value);
+
+        const impresionTotal = (ancho * alto) * cantidad;
+        document.getElementById('impresionTotal').value = impresionTotal;
+
+        const desperdicioTotal = (anchoMP * altoMP) * cantidad - impresionTotal;
+        document.getElementById('desperdicioTotal').value = desperdicioTotal;
+
+        const precioTotal = (precioInicial * impresionTotal) + (desperdicio * desperdicioTotal);
+        document.getElementById('precioTotal').value = precioTotal;
+    }
+
+    function limpiar() {
+        document.getElementById('miCalculadora').reset();
+    }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
